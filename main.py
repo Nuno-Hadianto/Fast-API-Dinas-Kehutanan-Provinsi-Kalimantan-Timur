@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
+from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import joblib
 import os
@@ -9,6 +10,14 @@ app = FastAPI(
     title="API Prediksi Kategori Capaian RKT",
     description="Menentukan kategori capaian realisasi RKT PBPH berdasarkan input fitur",
     version="1.0.2"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Load model secara aman
