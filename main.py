@@ -44,7 +44,6 @@ class InputData(BaseModel):
     Luas_PBPH: float = Field(..., example=15000)
     Tahun: int = Field(..., example=2024)
     Jenis_Hutan: int = Field(..., example=1)  # 0=Hutan Alam, 1=Hutan Tanaman
-    Flag_Prosentase_Tinggi: int = Field(..., example=0)
 
 # Endpoint prediksi
 @app.post("/predict", summary="Prediksi Kategori Capaian", tags=["Prediction"])
@@ -67,8 +66,7 @@ def predict(data: InputData):
             data.Target_Carry_Luas,
             data.Luas_PBPH,
             data.Tahun,
-            data.Jenis_Hutan,
-            data.Flag_Prosentase_Tinggi
+            data.Jenis_Hutan
         ]])
 
         # Prediksi menggunakan model
